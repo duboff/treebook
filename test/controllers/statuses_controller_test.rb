@@ -17,21 +17,26 @@ class StatusesControllerTest < ActionController::TestCase
     assert_redirected_to new_user_session_path
   end
 
-  test "should render the new page when logged in"
+  test "should render the new page when logged in" do
     sign_in users(:jason)
     get :new
     assert_response :success
   end
 
+  test "should be logged in to post status" do
+    post :create, status: { content: "Hello"}
+    assert_response :redirect
+    assert_redirected_to new_user_session_path
+  end
+
 
 
   test "should create status" do
-    assert_difference('Status.count') do
+    assert_difference('Status.count') 
       post :create, status: { content: @status.content }
     end
 
-    assert_redirected_to status_path(assigns(:status))
-  end
+
 
   test "should show status" do
     get :show, id: @status
@@ -48,11 +53,7 @@ class StatusesControllerTest < ActionController::TestCase
     assert_redirected_to status_path(assigns(:status))
   end
 
-  test "should destroy status" do
-    assert_difference('Status.count', -1) do
-      delete :destroy, id: @status
-    end
+ 
 
-    assert_redirected_to statuses_path
-  end
+   
 end
