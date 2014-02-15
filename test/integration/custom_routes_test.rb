@@ -17,4 +17,9 @@ test "that /register route opens the sign up page" do
   	assert_response :success
   end
 
+  test "profile page works" do 
+    get '/jason'
+    assert_response :success
+  end
+
 end
