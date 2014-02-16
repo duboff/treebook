@@ -8,9 +8,9 @@ group :develipment, :test do
 	gem 'sqlite3'
 end
 
-group :production, :test do
-	gem 'pg'
-end
+gem 'pg', group: :production
+
+gem 'rails_12factor', group: :production
 
 gem 'devise'
 
